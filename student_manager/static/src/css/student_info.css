@@ -1,0 +1,12 @@
+.oe_left {
+    float: left;
+    width: 50%;
+}
+
+.oe_right {
+    float: right;
+    width: 50%;
+}
+.o_bold {
+    font-weight: bold;
+}

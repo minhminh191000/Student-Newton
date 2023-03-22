@@ -1,0 +1,98 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500&subset=latin,vietnamese);
+
+body, html {
+	font-family: 'Roboto', sans-serif;
+	/* font-size: 1px; */
+	margin: 0;
+    padding: 0;
+    height: 100%;
+}
+body,
+body > #wrapwrap,
+body > #wrapwrap > main {
+    font-family: 'Roboto', sans-serif !important ;
+	height: 100%;
+    text-align:justify;
+    display: flex;
+    flex-direction: row;
+}
+
+.container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9) !important;
+}
+.card-body{
+    border-radius: 10px !important;
+    /* font-size: 18px; */
+    width: 500px;
+    height: 505px;
+    /* text-align: center; */
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.logo_tso{
+    position: absolute;
+    width: 50%;
+    top: 0;
+    right: 0;
+    background-color: #1A75E0;
+    z-index: -1;
+    height: 100vh;
+    overflow: hidden;
+    background-image: url(http://demo.bizapps.vn/biz_login_client/static/src/img/Layout%20login%20CSDL-05.png);
+    background-repeat: no-repeat;
+    background-size: 70% auto;
+    background-position: 50%;
+}
+.card{
+    max-width: 500px !important ;
+    display: flex;
+    flex-direction: row-reverse;
+}
+.btn-block{
+    background-color: #353590;
+    border-color: #353590;
+}
+.oe_single_form_footer{
+    font-style: italic;
+    /* margin-top:200px; */
+}
+
+.redirect_btn{
+    box-shadow: none;
+    border: 1px solid #353590;
+    background-color: #353590;
+    margin-top: 10px;
+    width: 100%;
+    color: #fff;
+    border-radius: 5px;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.redirect_btn:hover{
+    color: #fff;
+}
+
+.btn-fill-primary:hover, .btn-primary:hover {
+    color: #FFFFFF;
+    background-color: #353590;
+    border-color: #353590;
+}
+
+
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Menu item for your module -->
+        <menuitem id="student_menu" name="School Management"  sequence="10"/>
+
+        <!-- Sub-menu item for your module -->
+        <menuitem id="student_sub_menu" name="Student" parent="student_menu" action="student_action_by" sequence="10"/>
+                <!-- Menu item -->
+        <!-- <menuitem id="menu_class" name="Classes" sequence="10"/> -->
+        <!-- <menuitem id="menu_class_list" name="Class List" parent="menu_class" action="class_action"/> -->
+        <menuitem id="class_room_menu" name="Class" parent="student_menu" action="class_action" sequence="12"/>
+        <menuitem id="teacher_menu" name="Teacher" parent="student_menu" action="action_student_module_teacher" sequence="11"/>
+        <menuitem id="configuration_menu" name="Configuration" parent="student_menu" sequence="13"/>
+        <menuitem id="configuration_sub_object" name="Exam" parent="configuration_menu" action="action_student_module_exam" sequence="14"/>
+        <menuitem id="configuration_sub_exam" name="Subject" parent="configuration_menu" action="action_student_module_subject" sequence="15"/>
+        <!-- <menuitem id="menu_class_abc" name="Student Test" parent="student_menu" action="student_action_by"/> -->
+    </data>
+</odoo>
