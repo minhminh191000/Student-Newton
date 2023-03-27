@@ -1,5 +1,6 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
+import re
 
 class Student(models.Model):
     _name = 'student_module.student' # ten bang hien thi trong db la student_module_student
@@ -24,7 +25,18 @@ class Student(models.Model):
     login = fields.Char(string='Login', readonly=True, copy=False)
     password = fields.Char(string='Password', readonly=True, copy=False)
     
-    
+    @api.constrains('guardian_phone')
+    def check_phonenumber(self):
+        for rec in self:   
+            if not re.match("^\\d{8,11}$", rec.guardian_phone):
+                raise ValidationError("Enter valid 10 digits Mobile number")
+        
+    @api.constrains('guardian_email')
+    def _check_valid_email(self):
+        for rec in self:
+            if not re.match('(\w+[.|\w])*@(\w+[.])*\w+', rec.guardian_email):
+                raise ValidationError("Wrong email format")
+        
     # description = fields.(string='Description')
     @api.model
     def create(self, vals):
