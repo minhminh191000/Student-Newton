@@ -24,6 +24,8 @@ class Student(models.Model):
     # Login Fields
     login = fields.Char(string='Login', readonly=True, copy=False)
     password = fields.Char(string='Password', readonly=True, copy=False)
+
+    _sql_constraints = [('id_student', 'unique(id_student)', 'This student id is already exist!!!')]
     
     @api.constrains('guardian_phone')
     def check_phonenumber(self):

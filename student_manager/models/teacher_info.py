@@ -24,6 +24,8 @@ class Teacher(models.Model):
     login = fields.Char(string='Login', readonly=True, copy=False)
     password = fields.Char(string='Password', readonly=True, copy=False)
 
+    _sql_constraints = [('id_teacher', 'unique(id_teacher)', 'This teacher id is already exist!!!')]
+
     @api.constrains('phone')
     def check_phonenumber(self):
         for rec in self:   
