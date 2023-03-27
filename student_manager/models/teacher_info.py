@@ -23,6 +23,18 @@ class Teacher(models.Model):
     # Login Fields
     login = fields.Char(string='Login', readonly=True, copy=False)
     password = fields.Char(string='Password', readonly=True, copy=False)
+
+    @api.constrains('phone')
+    def check_phonenumber(self):
+        for rec in self:   
+            if not re.match("^\\d{8,11}$", rec.phone):
+                raise ValidationError("Enter valid 10 digits Mobile number")
+        
+    @api.constrains('guardemailian_email')
+    def _check_valid_email(self):
+        for rec in self:
+            if not re.match('(\w+[.|\w])*@(\w+[.])*\w+', rec.email):
+                raise ValidationError("Wrong email format")
     
     
     # description = fields.(string='Description')
