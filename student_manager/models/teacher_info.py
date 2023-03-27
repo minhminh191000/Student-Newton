@@ -32,7 +32,7 @@ class Teacher(models.Model):
             if not re.match("^\\d{8,11}$", rec.phone):
                 raise ValidationError("Enter valid 10 digits Mobile number")
         
-    @api.constrains('guardemailian_email')
+    @api.constrains('email')
     def _check_valid_email(self):
         for rec in self:
             if not re.match('(\w+[.|\w])*@(\w+[.])*\w+', rec.email):
