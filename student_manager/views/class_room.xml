@@ -95,7 +95,7 @@
                                             <t t-name="kanban-box">
                                                 <div class="oe_kanban_global_click">
                                                     <div class="o_kanban_image">
-                                                        <img alt="Avatar" t-att-src="kanban_image('student_module.teacher', 'avatar',record.id.raw_value)"/>
+                                                        <img alt="Avatar" t-att-src="kanban_image('student_module.teacher', 'image',record.id.raw_value)"/>
                                                     </div>
                                                     <div class="oe_kanban_content">
                                                         <div class="oe_kanban_details">

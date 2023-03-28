@@ -2,165 +2,98 @@
 <odoo>
     <data>
     <!-- exam -->
-    <record id="view_exam_form" model="ir.ui.view">
-        <field name="name">exam.form</field>
-        <field name="model">student_module.exam</field>
-        <field name="arch" type="xml">
-            <form string="Exam">
-                <sheet>
-                    <group>
-                        <field name="student_id"/>
-                        <field name="subject_id"/>
-                        <field name="assignment_type"/>
-                        <field name="score"/>
-                        <field name="date"/>
-                    </group>
-                </sheet>
-                <div class="oe_chatter">
-                        <field name="message_follower_ids" groups="base.group_user"/>
-                        <field name="activity_ids"/>
-                        <field name="message_ids"/>
-                </div>
-            </form>
-        </field>
-    </record>
-    <record id="view_exam_tree" model="ir.ui.view">
-        <field name="name">exam.tree</field>
-        <field name="model">student_module.exam</field>
-        <field name="arch" type="xml">
-            <tree string="Exams">
-                <field name="student_id"/>
-                <field name="subject_id"/>
-                <field name="assignment_type"/>
-                <field name="score"/>
-                <field name="date"/>
-            </tree>
-        </field>
-    </record>
-
-    <record id="action_student_module_exam" model="ir.actions.act_window">
-        <field name="name">Exams</field>
-        <field name="res_model">student_module.exam</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="view_mode">tree,form</field>
-        <field name="help" type="html">
-            <p class="oe_view_nocontent_create">
-                Click to Create a New Exam
-            </p>
-        </field>
-    </record>
-    <!-- exam -->
-    <!-- subject -->
-    <record id="view_subject_form" model="ir.ui.view">
-        <field name="name">subject.form</field>
-        <field name="model">student_module.subject</field>
-        <field name="arch" type="xml">
-            <form string="Subject">
-                <sheet>
-                    <group>
-                        <field name="name"/>
-                        <field name="code"/>
-                    </group>
-                </sheet>
-                <div class="oe_chatter">
-                        <field name="message_follower_ids" groups="base.group_user"/>
-                        <field name="activity_ids"/>
-                        <field name="message_ids"/>
-                </div>
-            </form>
-        </field>
-    </record>
-    <record id="view_subject_tree" model="ir.ui.view">
-        <field name="name">subject.tree</field>
-        <field name="model">student_module.subject</field>
-        <field name="arch" type="xml">
-            <tree string="Subjects">
-                <field name="name"/>
-                <field name="code"/>
-            </tree>
-        </field>
-    </record>
-
-    <record id="action_student_module_subject" model="ir.actions.act_window">
-        <field name="name">Subjects</field>
-        <field name="res_model">student_module.subject</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="view_mode">tree,form</field>
-        <field name="help" type="html">
-            <p class="oe_view_nocontent_create">
-                Click to Create a New Subject
-            </p>
-        </field>
-    </record>
-    <!-- subject -->
-    <!-- teacher -->
-    <record id="view_teacher_form" model="ir.ui.view">
-        <field name="name">teacher.form</field>
-        <field name="model">student_module.teacher</field>
-        <field name="arch" type="xml">
-              <form string="Student">
+        <record id="view_exam_form" model="ir.ui.view">
+            <field name="name">exam.form</field>
+            <field name="model">student_module.exam</field>
+            <field name="arch" type="xml">
+                <form string="Exam">
                     <sheet>
-                        <field name="image" widget='image' class="oe_avatar" />
-                        <div class="oe_title">
-                                <h1 class="d-flex">
-                                    <field name="name" placeholder="Teacher's Name" required="True"/>
-                                </h1>
-                        </div>
-                        <div class="oe_left">
-                            <group>
-                                <field name="id_teacher" required="True"/>
-                                <field name="gender"/>
-                                <field name="date_of_birth"/>
-                                <field name="phone"/>
-                                <field name="address_id"/> 
-                                                          
-                            </group>
-                        </div>
-                        <notebook>
-                            <page name="Class Taught" string="Class Taught">
-                                <field name="classroom_ids" mode="kanban"/>
-                            </page>
-                            <page name="Subjects" string="Subjects">
-                                <field name="subject_ids" mode="kanban"/>
-                            </page>
-                        </notebook>
+                        <group>
+                            <field name="student_id"/>
+                            <field name="subject_id"/>
+                            <field name="assignment_type"/>
+                            <field name="score"/>
+                            <field name="date"/>
+                        </group>
                     </sheet>
                     <div class="oe_chatter">
-                        <field name="message_follower_ids" groups="base.group_user"/>
-                        <field name="activity_ids"/>
-                        <field name="message_ids"/>
+                            <field name="message_follower_ids" groups="base.group_user"/>
+                            <field name="activity_ids"/>
+                            <field name="message_ids"/>
                     </div>
                 </form>
-        </field>
-    </record>
+            </field>
+        </record>
+        <record id="view_exam_tree" model="ir.ui.view">
+            <field name="name">exam.tree</field>
+            <field name="model">student_module.exam</field>
+            <field name="arch" type="xml">
+                <tree string="Exams">
+                    <field name="student_id"/>
+                    <field name="subject_id"/>
+                    <field name="assignment_type"/>
+                    <field name="score"/>
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_student_module_exam" model="ir.actions.act_window">
+            <field name="name">Exams</field>
+            <field name="res_model">student_module.exam</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to Create a New Exam
+                </p>
+            </field>
+        </record>
+        <!-- exam -->
+        <!-- subject -->
+        <record id="view_subject_form" model="ir.ui.view">
+            <field name="name">subject.form</field>
+            <field name="model">student_module.subject</field>
+            <field name="arch" type="xml">
+                <form string="Subject">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                            <field name="message_follower_ids" groups="base.group_user"/>
+                            <field name="activity_ids"/>
+                            <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="view_subject_tree" model="ir.ui.view">
+            <field name="name">subject.tree</field>
+            <field name="model">student_module.subject</field>
+            <field name="arch" type="xml">
+                <tree string="Subjects">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_student_module_subject" model="ir.actions.act_window">
+            <field name="name">Subjects</field>
+            <field name="res_model">student_module.subject</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to Create a New Subject
+                </p>
+            </field>
+        </record>
+        <!-- subject -->
 
 
-    <record id="view_teacher_tree" model="ir.ui.view">
-        <field name="name">teacher.tree</field>
-        <field name="model">student_module.teacher</field>
-        <field name="arch" type="xml">
-            <tree string="Teachers">
-                <field name="name"/>
-                <field name="gender"/>
-                <field name="phone"/>
-                <field name="email"/>
-            </tree>
-        </field>
-    </record>
-
-
-    <record id="action_student_module_teacher" model="ir.actions.act_window">
-        <field name="name">Teachers</field>
-        <field name="res_model">student_module.teacher</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="view_mode">tree,form</field>
-        <field name="help" type="html">
-            <p class="oe_view_nocontent_create">
-                Click to Create a New Teacher
-            </p>
-        </field>
-    </record>
-    <!-- teacher -->
-
-        </data>
+    </data>
 </odoo>

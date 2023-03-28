@@ -18,9 +18,9 @@ class Classroom(models.Model):
     class_start_date = fields.Date(string='Class Start Date')
     class_end_date = fields.Date(string='Class End Date')
     class_schedule = fields.Char(string='Class Schedule')
-    class_location = fields.Many2one('res.partner', string='Class Location')
-    documents = fields.Many2many('ir.attachment', string="Documents")
+    class_location = fields.Char(string='Class Location')
     # luu tru tai lieu cua lop
+    documents = fields.Many2many('ir.attachment', string="Documents")
 
 
     # giai thich Many2many

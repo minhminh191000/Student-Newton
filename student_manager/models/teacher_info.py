@@ -1,5 +1,6 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
+import re
 # goi cac libary python
 
 
@@ -8,30 +9,33 @@ class Teacher(models.Model):
     _description = 'Teacher Information'
     _inherit = ['mail.thread','mail.activity.mixin','avatar.mixin']
 
+    #  Teacher personal information
     name = fields.Char(string='Name')
     id_teacher = fields.Char(string='ID Teacher', required=True,unique=True)
-    gender = fields.Selection([('male', 'Male'), ('female', 'Female')], string='Gender', required=True)
+    gender = fields.Selection([('male', 'Male'), ('female', 'Female'), ('other', 'Other')], string='Gender', required=True)
     date_of_birth = fields.Date(string='Date of Birth')
     phone = fields.Char(string='Phone')
     email = fields.Char(string='Email')
     image = fields.Image(string='Avatar')
+    # Teacher school information
     classroom_ids = fields.Many2many('student_module.classroom', string='Class Taught')
     subject_ids = fields.Many2many('student_module.subject', string='Teaching Subjects')
-    address_id = fields.Many2one('res.partner', string='Home Address')
-    
-
+    address = fields.Char(string='Home Address')
     # Login Fields
     login = fields.Char(string='Login', readonly=True, copy=False)
     password = fields.Char(string='Password', readonly=True, copy=False)
 
+    # Check if student id is unique
     _sql_constraints = [('id_teacher', 'unique(id_teacher)', 'This teacher id is already exist!!!')]
 
+    # Check guardian phone valid
     @api.constrains('phone')
     def check_phonenumber(self):
         for rec in self:   
             if not re.match("^\\d{8,11}$", rec.phone):
                 raise ValidationError("Enter valid 10 digits Mobile number")
-        
+    
+    # Check guardian email valid
     @api.constrains('email')
     def _check_valid_email(self):
         for rec in self:
