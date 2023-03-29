@@ -2,14 +2,27 @@ from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 # goi cac libary python
 
+
 class Assigment(models.Model):
     _name = 'student_module.assignment'
     _description = 'Assignment'
     _inherit = ['mail.thread','mail.activity.mixin']
-    subject_id = fields.Many2many('student_module.subject', string='Subject', required=True)
+    subject_id = fields.Many2one('student_module.subject', string='Subject', required=True)
     classroom_id = fields.Many2one('student_module.classroom', string='Classroom', required=True)
     date = fields.Date(string='Date')
 
+
+    @api.depends('subject_id', 'classroom_id')
+    def _compute_unique_field(self):
+        self.unique_field = str(self.subject_id or "")+" "+str(self.classroom_id or "")
+
+    unique_field = fields.Char(compute='_compute_unique_field', store=True, readonly=True)
+
+    _sql_constraints = [
+        ('unique_field_unique',
+            'UNIQUE(unique_field)',
+            "Assignment must be unique!"),
+    ]
 
 class Teacher(models.Model):
     _name = 'student_module.teacher'
@@ -23,8 +36,8 @@ class Teacher(models.Model):
     phone = fields.Char(string='Phone')
     email = fields.Char(string='Email')
     image = fields.Image(string='Avatar')
-    homeroom_class = fields.Many2one('student_module.classroom',string='Homeroom Class', copy=False, unique=True)
-    assignment = fields.Many2many('student_module.assignment', string='Assignment', copy=False, unique=True)
+    homeroom_class = fields.Many2one('student_module.classroom',string='Homeroom Class', copy=False)
+    assignment = fields.Many2many('student_module.assignment', string='Assignment', copy=False)
 
     # Login Fields
     login = fields.Char(string='Login', readonly=True, copy=False)

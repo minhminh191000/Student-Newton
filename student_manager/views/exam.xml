@@ -102,7 +102,7 @@
                     <sheet>
                         <group>
                             <field name="classroom_id" string="Classroom" />
-                            <field name="subject_id" widget="many2many_tags" string="Subject" />
+                            <field name="subject_id" string="Subject" />
                             <field name="date" string="Create Date" />
                         </group>
                     </sheet>
