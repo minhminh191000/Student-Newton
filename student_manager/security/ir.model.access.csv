@@ -4,3 +4,5 @@ access_classroom_user,Access Classroom User,model_student_module_classroom,base.
 access_teacher,access.teacher,model_student_module_teacher,base.group_user,1,1,1,1
 access_exam,access.exam,model_student_module_exam,base.group_user,1,1,1,1
 access_subject,access.subject,model_student_module_subject,base.group_user,1,1,1,1
+access_assignment,access.assignment,model_student_module_assignment,base.group_user,1,1,1,1
+

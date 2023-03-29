@@ -8,8 +8,8 @@ class Classroom(models.Model):
     # mo ta ve bang trong database
     _inherit = ['mail.thread','mail.activity.mixin','avatar.mixin']
     #ke thua lai bang trong database
-    # li do ke thua tao ra cac truong 
-    
+    # li do ke thua tao ra cac truong
+    homeroom_teacher = fields.One2many('student_module.teacher','homeroom_class', string='Homeroom Teacher', copy=False)
     name = fields.Char(string='Class', required=True) # ten  cua lop hoc
     teacher = fields.Many2many('student_module.teacher', string='Teacher') # danh sach giao vien cua lop hoc 
     # lien ket nhieu du lieu giua 2 bang voi nhau

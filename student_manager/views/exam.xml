@@ -93,6 +93,23 @@
         </field>
     </record>
     <!-- subject -->
+    <!-- Assigment -->
+        <record id="asigment_view_form" model="ir.ui.view">
+            <field name="name">assignment.form</field>
+            <field name="model">student_module.assignment</field>
+            <field name="arch" type="xml">
+                <form string="asigment_form">
+                    <sheet>
+                        <group>
+                            <field name="classroom_id" />
+                            <field name="subject_id" />
+                            <field name="date" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    <!-- Assigment -->
     <!-- teacher -->
     <record id="view_teacher_form" model="ir.ui.view">
         <field name="name">teacher.form</field>
@@ -112,16 +129,13 @@
                                 <field name="gender"/>
                                 <field name="date_of_birth"/>
                                 <field name="phone"/>
-                                <field name="address_id"/> 
+                                <field name="homeroom_class"/>
                                                           
                             </group>
                         </div>
                         <notebook>
-                            <page name="Class Taught" string="Class Taught">
-                                <field name="classroom_ids" mode="kanban"/>
-                            </page>
-                            <page name="Subjects" string="Subjects">
-                                <field name="subject_ids" mode="kanban"/>
+                            <page name="Asignment" string="Assignment">
+                                <field name="assignment" mode="kanban"/>
                             </page>
                         </notebook>
                     </sheet>

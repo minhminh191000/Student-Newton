@@ -2,6 +2,14 @@ from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 # goi cac libary python
 
+class Assigment(models.Model):
+    _name = 'student_module.assignment'
+    _description = 'Assignment'
+    _inherit = ['mail.thread','mail.activity.mixin']
+    subject_id = fields.Many2many('student_module.subject', string='Subject', required=True)
+    classroom_id = fields.Many2one('student_module.classroom', string='Classroom', required=True)
+    date = fields.Date(string='Date')
+
 
 class Teacher(models.Model):
     _name = 'student_module.teacher'
@@ -15,14 +23,24 @@ class Teacher(models.Model):
     phone = fields.Char(string='Phone')
     email = fields.Char(string='Email')
     image = fields.Image(string='Avatar')
-    classroom_ids = fields.Many2many('student_module.classroom', string='Class Taught')
-    subject_ids = fields.Many2many('student_module.subject', string='Teaching Subjects')
-    address_id = fields.Many2one('res.partner', string='Home Address')
-    
+    homeroom_class = fields.Many2one('student_module.classroom',string='Homeroom Class', copy=False, unique=True)
+    assignment = fields.Many2many('student_module.assignment', string='Assignment', copy=False, unique=True)
 
     # Login Fields
     login = fields.Char(string='Login', readonly=True, copy=False)
     password = fields.Char(string='Password', readonly=True, copy=False)
+
+    _sql_constraints = [
+        ('id_teacher_unique',
+            'UNIQUE(id_teacher)',
+            "ID Teacher must be unique!"),
+        ('homeroom_class_unique',
+            'UNIQUE(homeroom_class)',
+            "The class has a homeroom teacher"),
+        ('assignment_unique',
+            'UNIQUE(assignment)',
+            "The teacher has an assignment"),
+    ]
     
     
     # description = fields.(string='Description')
