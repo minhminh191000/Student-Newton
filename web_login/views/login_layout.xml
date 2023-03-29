@@ -8,10 +8,10 @@
 			<t t-set="body_classname" t-value="''"/>
    		</xpath> -->
    		
-        <xpath expr="//t//div" position="after">
-            <div class="logo_tso">
-            </div>
-   		</xpath>
+<!--        <xpath expr="//t//div" position="after">-->
+<!--            <div class="logo_tso">-->
+<!--            </div>-->
+<!--   		</xpath>-->
 		<xpath expr="//t//div//div//div//div//img" position="attributes">
 			<attribute name="t-attf-src">https://ngs.edu.vn/wp-content/uploads/2022/04/logo-update.png</attribute>
 		</xpath>
@@ -25,35 +25,14 @@
 		</xpath>
 
 		<xpath expr="//t//div//div//div//div[2]//t//a" position="replace"/>
-		<!-- <xpath expr="//t//div//div//div//div[2]//t//a" position="replace">
-			    <div class="oe_single_form_footer" style="bottom: -50px;">
-					Copyright ©2022 Tinhvan Software. All Rights Reserved
-                </div>  
-		</xpath> -->
+
 		<xpath expr="//t//div//div//div//div[2]//a" position="replace" />
 		<xpath expr="//t//div//div" position="after">
 				<div class="oe_single_form_footer" style="bottom: 10px;position: absolute;">
 					Copyright ©2023 Liên Cấp Newton. All Rights Reserved
                 </div>  
 		</xpath>
-
-		<!-- <xpath expr="//div[@t-attf-class='clearfix']//button" position="attributes">
-			<attribute name="class">btn btn-primary btn-block login_btn</attribute>          
-        </xpath> -->
    	</template>
-
-<!-- 
-	<template id="inherited_login_layout" inherit_id="web.login_layout" name="My Theme Login">
-            <xpath expr="//div[@class='oe_single_form_footer']" position="replace">
-                <div class="oe_single_form_footer" style="bottom: -50px;">
-                 Developed By: Hassan Enterprises
-                 <span class="oe_footer_seperator"> | </span>
-                 Phone: +92 321 1234567
-                 <span class="oe_footer_seperator"></span>
-                 Email: abc@gmail.com
-                </div>           
-            </xpath>
-        </template>   -->
    	
    	<template id="login" inherit_id="web.login" name="Login Inherit">
 

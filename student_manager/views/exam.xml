@@ -94,20 +94,59 @@
     </record>
     <!-- subject -->
     <!-- Assigment -->
-        <record id="asigment_view_form" model="ir.ui.view">
+        <record id="assigment_view_form" model="ir.ui.view">
             <field name="name">assignment.form</field>
             <field name="model">student_module.assignment</field>
             <field name="arch" type="xml">
-                <form string="asigment_form">
+                <form string="assigment_form">
                     <sheet>
                         <group>
-                            <field name="classroom_id" />
-                            <field name="subject_id" />
-                            <field name="date" />
+                            <field name="classroom_id" string="Classroom" />
+                            <field name="subject_id" widget="many2many_tags" string="Subject" />
+                            <field name="date" string="Create Date" />
                         </group>
                     </sheet>
                 </form>
             </field>
+        </record>
+        <record id="assigment_view_tree" model="ir.ui.view">
+            <field name="name">assigment.tree</field>
+            <field name="model">student_module.assignment</field>
+            <field name="arch" type="xml">
+                <tree string="assigment_tree">
+                    <field name="classroom_id" />
+                    <field name="subject_id" />
+                    <field name="date" />
+                </tree>
+            </field>
+        </record>
+        <record id="assigment_view_kanban" model="ir.ui.view">
+            <field name="name">assigment.kanban</field>
+            <field name="model">student_module.assignment</field>
+             <field name="arch" type="xml">
+                <kanban>
+                   <field name="classroom_id" />
+                    <field name="subject_id" />
+                    <field name="date" />
+             <templates>
+             <t t-name="kanban-box">
+                    <div class="oe_kanban_global_click">
+                        <div class="oe_kanban_details">
+                            <div class="o_kanban_record_title">
+                                <field name="classroom_id" />
+                            </div>
+                            <div class="o_kanban_record_subtitle">
+                                <field name="subject_id" />
+                            </div>
+                            <div class="o_kanban_record_subtitle">
+                                <field name="date" />
+                            </div>
+                        </div>
+                    </div>
+             </t>
+             </templates>
+             </kanban>
+             </field>
         </record>
     <!-- Assigment -->
     <!-- teacher -->

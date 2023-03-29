@@ -18,14 +18,15 @@ body > #wrapwrap > main {
 }
 
 .container {
-    width: 50%;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: absolute;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.9) !important;
+    /*background-color: rgba(255, 255, 255, 0.9) !important;*/
+    background: url('https://wallup.net/wp-content/uploads/2019/09/08/246705-school-classroom-makoto-shinkai-lonely-sunlight-5-centimeters-per-second-desks-chill.jpg') !important;
 }
 .card-body{
     border-radius: 10px !important;
