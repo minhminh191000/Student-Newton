@@ -1,6 +1,6 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
-
+import  re
 class Student(models.Model):
     _name = 'student_module.student' # ten bang hien thi trong db la student_module_student
     _description = 'Student Information'
@@ -13,8 +13,9 @@ class Student(models.Model):
     guardian_name = fields.Char(string='Name of Guardian')
     guardian_phone = fields.Char(string='Phone of Guardian')
     guardian_email = fields.Char(string='Email of Guardian')
-    guardian_relationship = fields.Selection([('father', 'Father'), ('mother', 'Mother'), ('brother', 'Brother'), ('sister', 'Sister'), ('uncle', 'Uncle'), ('aunt', 'Aunt'), ('grandfather', 'Grandfather'), ('grandmother', 'Grandmother'), ('other', 'Other')], string='Guardian Relationship')
-    address_id = fields.Many2one('res.partner', string='Home Address')
+    guardian_relationship = fields.Selection([('parent', 'Parent'), ('sibling', 'Sibling'), ('relative', 'Relative')],
+                                             string='Guardian RelationShip', required=True)
+    address = fields.Char(string='Home Address')
     avatar = fields.Image(string='Avatar')
     avatar_url = fields.Char(compute='_compute_avatar_url')
     classroom_id = fields.Many2many('student_module.classroom', string='Class')
@@ -23,9 +24,25 @@ class Student(models.Model):
     # Login Fields
     login = fields.Char(string='Login', readonly=True, copy=False)
     password = fields.Char(string='Password', readonly=True, copy=False)
-    
+
+    # Check if student id is unique
+    _sql_constraints = [('id_student', 'unique(id_student)', 'This student id is already exist!!!')]
     
     # description = fields.(string='Description')
+
+    # Check guardian phone valid
+    @api.constrains('guardian_phone')
+    def check_phonenumber(self):
+        for rec in self:
+            if not re.match("^\\d{8,11}$", rec.guardian_phone):
+                raise ValidationError("Enter valid 10 digits Mobile number")
+
+    # Check guardian email valid
+    @api.constrains('guardian_email')
+    def _check_valid_email(self):
+        for rec in self:
+            if not re.match('(\w+[.|\w])*@(\w+[.])*\w+', rec.guardian_email):
+                raise ValidationError("Wrong email format")
     @api.model
     def create(self, vals):
         # Generate a login based on the student's name

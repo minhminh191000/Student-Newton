@@ -22,7 +22,7 @@
                             <field name="id_student" required="True"/>
                             <field name="date_of_birth"/>
                             <field name="gender"/>
-                            <field name="address_id"/>
+                            <field name="address"/>
                             
                             
                         </group>

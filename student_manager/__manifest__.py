@@ -5,8 +5,8 @@
     'depends': ['base','web','mail',],
     # gọi các hàm bên trong folder views
     'data': [
-        'security/security.xml',
         'security/ir.model.access.csv',
+        'security/security.xml',
         'views/student_info.xml',
         'views/class_room.xml',
         'views/exam.xml',

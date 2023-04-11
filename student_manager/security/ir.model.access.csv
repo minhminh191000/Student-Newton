@@ -1,5 +1,5 @@
 "id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
-access_student_manager_student,Access Student,model_student_module_student,base.group_user,1,1,1,1
+access_student_manager_student,Access Student,model_student_module_student,student_manager.group_student_manager,1,1,1,1
 access_classroom_user,Access Classroom User,model_student_module_classroom,base.group_user,1,1,1,1
 access_teacher,access.teacher,model_student_module_teacher,base.group_user,1,1,1,1
 access_exam,access.exam,model_student_module_exam,base.group_user,1,1,1,1
