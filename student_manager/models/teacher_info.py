@@ -1,7 +1,6 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 import re
-# goi cac libary python
 
 
 class Teacher(models.Model):
@@ -9,7 +8,7 @@ class Teacher(models.Model):
     _description = 'Teacher Information'
     _inherit = ['mail.thread','mail.activity.mixin','avatar.mixin']
 
-    #  Teacher personal information
+    # Teacher personal information
     name = fields.Char(string='Name')
     id_teacher = fields.Char(string='ID Teacher', required=True,unique=True)
     gender = fields.Selection([('male', 'Male'), ('female', 'Female'), ('other', 'Other')], string='Gender', required=True)
@@ -17,11 +16,11 @@ class Teacher(models.Model):
     phone = fields.Char(string='Phone')
     email = fields.Char(string='Email')
     image = fields.Image(string='Avatar')
+    address = fields.Char(string='Home Address')
     # Teacher school information
     classroom_ids = fields.Many2many('student_module.classroom', string='Class Taught')
     subject_ids = fields.Many2many('student_module.subject', string='Teaching Subjects')
-    address = fields.Char(string='Home Address')
-    # Login Fields
+    # Login Fields  
     login = fields.Char(string='Login', readonly=True, copy=False)
     password = fields.Char(string='Password', readonly=True, copy=False)
 

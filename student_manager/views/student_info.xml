@@ -151,10 +151,10 @@
                                                 <span class="o_bold"><field name="name"/></span>
                                             </field>
                                         </strong>
-                                    <div class="oe_kanban_bottom_right">
-                                        <div><field name="id_student"/></div>
-                                        <div><field name="date_of_birth"/></div>
-                                    </div>
+                                        <div class="oe_kanban_bottom_right">
+                                            <div><field name="id_student"/></div>
+                                            <div><field name="date_of_birth"/></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

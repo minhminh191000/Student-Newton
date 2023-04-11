@@ -1,5 +1,5 @@
 from odoo import api, fields, models
-#
+
 
 class Classroom(models.Model): 
     _name = 'student_module.classroom'
