@@ -18,8 +18,10 @@ class Classroom(models.Model):
     class_start_date = fields.Date(string='Class Start Date')
     class_end_date = fields.Date(string='Class End Date')
     class_schedule = fields.Char(string='Class Schedule')
-    class_location = fields.Many2one('res.partner', string='Class Location')
+    class_location_school = fields.Char(string='Class Location')
     documents = fields.Many2many('ir.attachment', string="Documents")
+
+    message_channel_ids = fields.Many2one(comodel_name='mail.channel', string='Students')
     # luu tru tai lieu cua lop
 
 
@@ -30,9 +32,22 @@ class Classroom(models.Model):
     def create(self, vals):
         # Tạo kênh mới trong discuss
         channel = self.env['mail.channel'].create({
-            'name': vals['name'], # ten kenh = voi ten  vals['name'] = name cua class room
-            'channel_partner_ids': [(4, self.env.user.partner_id.id)], # nhung nguoi duoc add vao kenh nay , no co day du cac quyeneeEE
-            # 'public': 'private',
+            'name': vals['name'],
+            'channel_partner_ids': [(4, self.env.user.partner_id.id)],
         })
-        # tao moi 1 kenh bang cau lenh nay
+        vals['message_channel_ids'] = channel.id
         return super(Classroom, self).create(vals)
+
+    def write(self, vals):
+        res = super(Classroom, self).write(vals)
+        if 'students' in vals:
+            channel = self.message_channel_ids
+            for student in vals['students'][0][2]:
+                student_id = self.env['student_module.student'].browse(student)
+                channel.write({'channel_partner_ids': [(4, student_id.partner_id.id)]})
+        if 'teacher' in vals:
+            channel = self.message_channel_ids
+            for teacher in vals['teacher'][0][2]:
+                teacher_id = self.env['student_module.teacher'].browse(teacher)
+                channel.write({'channel_partner_ids': [(4, teacher_id.partner_id.id)]})
+        return res

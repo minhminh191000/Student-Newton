@@ -11,8 +11,8 @@ class Student(models.Model):
     gender = fields.Selection([('male', 'Male'), ('female', 'Female'), ('other', 'Other')], string='Gender')
     id_student = fields.Char(string='ID Student', required=True,unique=True)
     guardian_name = fields.Char(string='Name of Guardian')
-    guardian_phone = fields.Char(string='Phone of Guardian')
-    guardian_email = fields.Char(string='Email of Guardian')
+    guardian_phone = fields.Char(string='Phone of Guardian',required=True)
+    guardian_email = fields.Char(string='Email of Guardian',required=True)
     guardian_relationship = fields.Selection([('parent', 'Parent'), ('sibling', 'Sibling'), ('relative', 'Relative')],
                                              string='Guardian RelationShip', required=True)
     address = fields.Char(string='Home Address')
@@ -24,6 +24,10 @@ class Student(models.Model):
     # Login Fields
     login = fields.Char(string='Login', readonly=True, copy=False)
     password = fields.Char(string='Password', readonly=True, copy=False)
+    partner_id = fields.Many2one(comodel_name='res.partner', string='Related Partner', required=True, ondelete='cascade')
+
+    user_id = fields.Many2one(comodel_name='res.userss', string='Students')
+
 
     # Check if student id is unique
     _sql_constraints = [('id_student', 'unique(id_student)', 'This student id is already exist!!!')]
@@ -49,7 +53,13 @@ class Student(models.Model):
         login = vals.get('id_student').lower().replace(' ', '.')
         vals['login'] = login
 
-        # Create the student record
+        partner = self.env['res.partner'].create({
+            'name': vals.get('name'),
+            'email': vals.get('guardian_email'),
+            'phone': vals.get('guardian_phone'),
+        })
+        vals['partner_id'] = partner.id
+
         student = super().create(vals)
 
         # Create the user account
@@ -58,10 +68,14 @@ class Student(models.Model):
             'login': login,
             'password': login,  # You can generate a more secure password here
             'email': vals.get('email'),
-            # 'partner_id': student.partner_id.id,
+            'partner_id': partner.id,
         }
         try:
-            self.env['res.users'].create(user_vals)
+            user = self.env['res.users'].create(user_vals)
+            student.write({'user_id': [(4, user.id)]})
+            group = self.env.ref('student_manager.group_student_manager')
+            user.write({'groups_id': [(4, group.id)]})
+
         except Exception as e:
             raise ValidationError("Error creating user account: %s" % str(e))
 

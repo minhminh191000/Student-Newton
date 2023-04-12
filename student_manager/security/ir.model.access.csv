@@ -1,6 +1,14 @@
 "id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
-access_student_manager_student,Access Student,model_student_module_student,student_manager.group_student_manager,1,1,1,1
-access_classroom_user,Access Classroom User,model_student_module_classroom,base.group_user,1,1,1,1
-access_teacher,access.teacher,model_student_module_teacher,base.group_user,1,1,1,1
-access_exam,access.exam,model_student_module_exam,base.group_user,1,1,1,1
-access_subject,access.subject,model_student_module_subject,base.group_user,1,1,1,1
+access_student_manager_student,Access Student,model_student_module_student,group_student_manager,1,0,0,0
+access_classroom_user,Access Classroom User,model_student_module_classroom,group_student_manager,1,0,0,0
+access_teacher,access.teacher,model_student_module_teacher,group_student_manager,1,0,0,0
+access_exam,access.exam,model_student_module_exam,group_student_manager,1,0,0,0
+access_subject,school access.subject,model_student_module_subject,group_student_manager,1,0,0,0
+
+teacher_access_exam,access.exam,model_student_module_exam,group_teacher_manager,1,1,1,1
+teacher_access_subject,school access.subject,model_student_module_subject,group_teacher_manager,1,0,0,0
+
+school_access_student_manager_student,school Access Student,model_student_module_student,group_school_manager,1,1,1,1
+school_access_classroom_user,school Access Classroom User,model_student_module_classroom,group_school_manager,1,1,1,1
+school_access_teacher,school access.teacher,model_student_module_teacher,group_school_manager,1,1,1,1
+school_access_subject,school access.subject,model_student_module_subject,group_school_manager,1,1,1,1
