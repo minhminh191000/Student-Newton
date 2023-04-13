@@ -9,7 +9,7 @@ class Student(models.Model):
     name = fields.Char(string='Name')
     date_of_birth = fields.Date(string="Date of Birth")
     gender = fields.Selection([('male', 'Male'), ('female', 'Female'), ('other', 'Other')], string='Gender')
-    id_student = fields.Char(string='ID Student', required=True,unique=True)
+    id_student = fields.Char(string='ID Student',unique=True)
     guardian_name = fields.Char(string='Name of Guardian')
     guardian_phone = fields.Char(string='Phone of Guardian',required=True)
     guardian_email = fields.Char(string='Email of Guardian',required=True)
@@ -50,8 +50,6 @@ class Student(models.Model):
     @api.model
     def create(self, vals):
         # Generate a login based on the student's name
-        login = vals.get('id_student').lower().replace(' ', '.')
-        vals['login'] = login
 
         partner = self.env['res.partner'].create({
             'name': vals.get('name'),
@@ -59,6 +57,10 @@ class Student(models.Model):
             'phone': vals.get('guardian_phone'),
         })
         vals['partner_id'] = partner.id
+        vals['id_student'] = 'STUDENT{0}'.format(partner.id)
+
+        login = vals.get('id_student').lower().replace(' ', '.')
+        vals['login'] = login
 
         student = super().create(vals)
 

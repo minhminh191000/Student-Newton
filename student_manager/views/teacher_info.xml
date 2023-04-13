@@ -16,7 +16,7 @@
                         </div>
                         <div class="oe_left">
                             <group>
-                                <field name="id_teacher" required="True"/>
+                                <field name="id_teacher" readonly="1"/>
                                 <field name="gender"/>
                                 <field name="date_of_birth"/>
                                 <field name="phone"/>

@@ -10,7 +10,7 @@ class Teacher(models.Model):
     _inherit = ['mail.thread','mail.activity.mixin','avatar.mixin']
 
     name = fields.Char(string='Name')
-    id_teacher = fields.Char(string='ID Teacher', required=True,unique=True)
+    id_teacher = fields.Char(string='ID Teacher',unique=True)
     gender = fields.Selection([('male', 'Male'), ('female', 'Female')], string='Gender', required=True)
     date_of_birth = fields.Date(string='Date of Birth')
     phone = fields.Char(string='Phone')
@@ -46,14 +46,16 @@ class Teacher(models.Model):
     @api.model 
     def create(self, vals):
         # Generate a login based on the student's name
-        login = vals.get('id_teacher').lower().replace(' ', '.')
-        vals['login'] = login
+
         partner = self.env['res.partner'].create({
             'name': vals.get('name'),
             'email': vals.get('email'),
             'phone': vals.get('phone'),
         })
         vals['partner_id'] = partner.id
+        vals['id_teacher'] = 'TEACHER{0}'.format(partner.id)
+        login = vals.get('id_teacher').lower().replace(' ', '.')
+        vals['login'] = login
         # Create the student record
         student = super().create(vals)
 
